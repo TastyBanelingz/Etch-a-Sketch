@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Etch-A-Sketch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id = 'grid'>
+        <div class = 'row'>
+            <div class = 'column'>1</div>
+            <div class = 'column'>2</div>
+            <div class = 'column'>3</div>
+        </div>
+        <div class = 'row'>
+            <div class = 'column'>4</div>
+            <div class = 'column'>5</div>
+            <div class = 'column'>6</div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    let rowCount = 16;
+    let colCount = 16;
+    let grid = document.getElementById('grid');
+
+    
+
+    //function to create Grid based on parameters
+    function buildGrid(rowAmt, colAmt) {
+        let htmlElements = "";
+        //Create Row Divs
+        for (r = 0; r < rowAmt; r++) {
+            htmlElements += "<div class = 'row' id = 'r" + r + "'></div>";
+        }
+        grid.innerHTML = htmlElements;
+
+        //Create Column Divs
+        let rows = document.getElementsByClassName('row');
+        for (r = 0; r < rows.length; r++) {
+            htmlElements = ""
+            for (c = 0; c < colAmt; c++) {
+                htmlElements += "<div class = 'column_unclicked' id = 'r" + r + "c" + c +"'></div>";
+
+            }
+            rows[r].innerHTML = htmlElements;
+        }
+    };
+
+    //fill logic
+    document.body.addEventListener('mouseover', function (event) {
+            console.log(event.originalTarget.id[0])
+            if (event.originalTarget.id.includes('c')) {
+                document.getElementById(event.originalTarget.id).style.backgroundColor = "blue";
+            }
+    });
+
+
+    //Build the page
+    buildGrid(rowCount, colCount);
+
+
+
+    
+
+</script>
+
+
+
